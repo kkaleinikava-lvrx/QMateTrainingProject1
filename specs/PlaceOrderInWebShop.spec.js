@@ -24,7 +24,6 @@ describe("Shopping Cart App", function(){
     });
 
     it("Check Item Status", async function(){
-        //await ProductPage.checkProductStatus("Available");
         const productStatus = await ProductPage.getProductStatus();
         await common.assertion.expectEqual(productStatus, "Available");
     });
