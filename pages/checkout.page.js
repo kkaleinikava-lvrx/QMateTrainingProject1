@@ -177,18 +177,6 @@ class CheckoutPage {
     }
     
     //page actions:  
-    
-    async checkDeliveryType(deliveryType) {
-        await ui5.assertion.expectTextToBe(CheckoutPage.DELIVERY_TYPE_TEXT_SELECTOR,deliveryType);
-    }
-
-    async checkIfOrderCompletedTextContains(text) {
-        await ui5.assertion.expectAttributeToContain(CheckoutPage.ORDER_COMPLETED_TEXT_SELECTOR, "htmlText", text);
-    }
-
-    async checkIfTotalAmountTextContains(amount) {
-        await ui5.assertion.expectAttributeToContain(CheckoutPage.TOTAL_TEXT_SELECTOR, "text", amount);
-    }
 
     async clickCreditCardButton() {
         await ui5.userInteraction.click(CheckoutPage.CREDIT_CARD_BUTTON_SELECTOR);
@@ -228,6 +216,21 @@ class CheckoutPage {
 
     async confirmOrderSubmission() {
         await ui5.confirmationDialog.clickYes();
+    }
+
+    async getDeliveryType() {
+        const deliveryType = await ui5.element.getPropertyValue(CheckoutPage.DELIVERY_TYPE_TEXT_SELECTOR, "text");
+        return deliveryType;
+    }
+
+    async getOrderCompletedText() {
+        const textValue = await ui5.element.getPropertyValue(CheckoutPage.ORDER_COMPLETED_TEXT_SELECTOR, "htmlText");
+        return textValue;
+    }
+
+    async getTotalAmountText() {
+        const totalAmountText = await ui5.element.getPropertyValue(CheckoutPage.TOTAL_TEXT_SELECTOR, "text");
+        return totalAmountText;
     }
 
     async inputCardholderName(name) {

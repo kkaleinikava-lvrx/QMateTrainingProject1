@@ -2,26 +2,6 @@ class CatalogPage {
      
     //page locators:
 
-    static AVAILABILITY_LIST_ITEM_SELECTOR = {
-        "elementProperties": {
-            "viewName": "sap.ui.demo.cart.view.Category",
-            "metadata": "sap.m.StandardListItem",
-            "title": "Availability"
-        }
-    }
-
-    static AVAILABLE_LIST_ITEM_SELECTOR = {
-        "elementProperties": {
-            "viewName": "sap.ui.demo.cart.view.Category",
-            "metadata": "sap.m.CheckBox"
-        },
-        "ancestorProperties": {
-            "viewName": "sap.ui.demo.cart.view.Category",
-            "metadata": "sap.m.StandardListItem",
-            "title": "Available"
-        }
-    }
-
     static CATEGORY_LIST_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Home",
@@ -43,14 +23,6 @@ class CatalogPage {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Button",
             "id": "*masterListFilterButton"
-        }
-    }
-
-    static MICE_CATEGORY_SELECTOR = {
-        "elementProperties": {
-            "viewName": "sap.ui.demo.cart.view.Home",
-            "metadata": "sap.m.StandardListItem",
-            "bindingContextPath": "/ProductCategories*'MI')"
         }
     }
 
@@ -79,23 +51,43 @@ class CatalogPage {
     async clickOkButton() {
         await ui5.userInteraction.click(CatalogPage.OK_BUTTON_SELECTOR);
     }
-
-    async selectFilterByAvailability() {
-        await ui5.userInteraction.click(CatalogPage.AVAILABILITY_LIST_ITEM_SELECTOR);
-    }
-
-    async selectFilterOptionAvailable() {
-        await ui5.userInteraction.click(CatalogPage.AVAILABLE_LIST_ITEM_SELECTOR);
-    }
     
+    async selectCategory(categoryName) {
+        const categorySelector = {
+             "elementProperties": {
+                "viewName": "sap.ui.demo.cart.view.Home",
+                "metadata": "sap.m.StandardListItem",
+                "title": categoryName
+            }
+        }
+        await ui5.userInteraction.click(categorySelector);
+    }
+
+    async selectFilter(filterName) {
+        const filterItemSelector = {
+            "elementProperties": {
+                "viewName": "sap.ui.demo.cart.view.Category",
+                "metadata": "sap.m.StandardListItem",
+                "title": filterName
+            }
+        }
+        await ui5.userInteraction.click(filterItemSelector);
+    }
+    async selectFilterOption(filterOptionName) {
+        const filterOptionSelector = {
+            "elementProperties": {
+                "viewName": "sap.ui.demo.cart.view.Category",
+                "metadata": "sap.m.StandardListItem",
+                "title": filterOptionName
+            }
+        }
+        await ui5.userInteraction.click(filterOptionSelector);
+    }
+
     async selectItem (number) {
         await ui5.userInteraction.click(CatalogPage.PRODUCT_ITEM_SELECTOR, number);
     }
         
-    async selectMiceCategoryFromMenu() {
-        await ui5.userInteraction.click(CatalogPage.MICE_CATEGORY_SELECTOR);
-    }
-
     async waitForCategoryDisplayed () {
         await ui5.element.getDisplayed(CatalogPage.CATEGORY_TITLE_SELECTOR);
     }

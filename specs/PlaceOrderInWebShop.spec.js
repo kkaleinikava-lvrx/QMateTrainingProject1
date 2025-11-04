@@ -6,14 +6,14 @@ import ShoppingCartPage from '../pages/shoppingCart.page.js';
 describe("Shopping Cart App", function(){
 
     it("Select Category", async function(){
-        await CatalogPage.selectMiceCategoryFromMenu();
+        await CatalogPage.selectCategory("Mice");
         await CatalogPage.waitForCategoryDisplayed();        
     });
     
     it("Filer by Availability", async function(){        
         await CatalogPage.clickFilterButton();
-        await CatalogPage.selectFilterByAvailability();
-        await CatalogPage.selectFilterOptionAvailable();
+        await CatalogPage.selectFilter("Availability");
+        await CatalogPage.selectFilterOption("Available");
         await CatalogPage.clickOkButton();        
     });
      
@@ -24,7 +24,9 @@ describe("Shopping Cart App", function(){
     });
 
     it("Check Item Status", async function(){
-        await ProductPage.checkProductStatus("Available");
+        //await ProductPage.checkProductStatus("Available");
+        const productStatus = await ProductPage.getProductStatus();
+        await common.assertion.expectEqual(productStatus, "Available");
     });
     
     it("Add Item to Cart", async function(){
@@ -42,7 +44,8 @@ describe("Shopping Cart App", function(){
     });
     
     it("Check Total Amount and Proceed", async function(){
-        await CheckoutPage.checkIfTotalAmountTextContains(" 23,00 EUR"); 
+        const totalAmountText = await CheckoutPage.getTotalAmountText();
+        await common.assertion.expectToContain(totalAmountText, " 23,00 EUR");
         await CheckoutPage.clickStep2Button(); 
     });
     
@@ -75,7 +78,8 @@ describe("Shopping Cart App", function(){
     });
     
     it("Check Order Details", async function(){
-        await CheckoutPage.checkDeliveryType("Express Delivery");
+        const deliveryType = await CheckoutPage.getDeliveryType();
+        await common.assertion.expectEqual(deliveryType, "Express Delivery");
     });
     
     it("Submit Order", async function(){
@@ -84,7 +88,8 @@ describe("Shopping Cart App", function(){
     });
     
     it("Check Order Confirmation", async function(){
-        await CheckoutPage.checkIfOrderCompletedTextContains("Your order number:");
+        const orderCompletedText = await CheckoutPage.getOrderCompletedText();
+        await common.assertion.expectToContain(orderCompletedText, "Your order number:")
     });
     
     it("Return to Shop", async function(){

@@ -69,8 +69,9 @@ class ProductPage {
         await ui5.userInteraction.click(ProductPage.ADD_TO_CART_BUTTON_SELECTOR);
     }
 
-    async checkProductStatus(status) {
-        await ui5.assertion.expectAttributeToBe(ProductPage.PRODUCT_STATUS_SELECTOR, "text", status);
+    async getProductStatus() {
+        const productStatus = await ui5.element.getPropertyValue(ProductPage.PRODUCT_STATUS_SELECTOR, "text");
+        return productStatus;
     }
 
     async login() {
