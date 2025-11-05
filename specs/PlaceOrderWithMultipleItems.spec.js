@@ -14,18 +14,15 @@ describe("Shopping Cart App", function(){
         const firstProductName = await ProductPage.getProductName();
         await common.assertion.expectEqual(firstProductName, "Family PC Pro");
 
-
         await ProductPage.addProductToCart();
 
         await CatalogPage.clickBackButton();
         await CatalogPage.waitForPageLoaded();
 
-
         await CatalogPage.selectCategory("Accessories");
         await CatalogPage.waitForCategoryDisplayed();
 
         await CatalogPage.selectItem(9, "Available");
-        
         await ProductPage.waitForPageLoaded();
 
         const secondProductName = await ProductPage.getProductName();
@@ -37,6 +34,7 @@ describe("Shopping Cart App", function(){
         }
 
         await ProductPage.showShoppingCart();
+        await ShoppingCartPage.waitForPageLoaded();
 
         const firstProductQuantity = await ShoppingCartPage.getQuantityForProductFromShoppingCart(firstProductName);
         await common.assertion.expectEqual(firstProductQuantity, 1);
