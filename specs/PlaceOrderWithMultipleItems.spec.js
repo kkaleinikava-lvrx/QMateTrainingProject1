@@ -13,6 +13,8 @@ describe("Shopping Cart App", function(){
 
         const firstProductName = await ProductPage.getProductName();
         await common.assertion.expectEqual(firstProductName, "Family PC Pro");
+        const firstProductStatus = await ProductPage.getProductStatus();
+        await common.assertion.expectEqual(firstProductStatus, "Available");
 
         await ProductPage.addProductToCart();
 
@@ -27,6 +29,8 @@ describe("Shopping Cart App", function(){
 
         const secondProductName = await ProductPage.getProductName();
         await common.assertion.expectEqual(secondProductName, "Goldberry");
+        const secondProductStatus = await ProductPage.getProductStatus();
+        await common.assertion.expectEqual(secondProductStatus, "Available");
 
         const itemQuantity = 4;
         for (let i = 0; i < itemQuantity; i++) {
