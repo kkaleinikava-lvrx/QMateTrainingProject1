@@ -2,6 +2,14 @@ class CatalogPage {
      
     //page locators:
 
+    static BACK_BUTTON_SELECTOR = {
+        "elementProperties": {
+            "viewName": "sap.ui.demo.cart.view.Category",
+            "metadata": "sap.m.Button",
+            "type": "Back"
+        }
+    }
+
     static CATEGORY_LIST_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Home",
@@ -44,6 +52,10 @@ class CatalogPage {
 
     //page actions:  
 
+    async clickBackButton() {
+        await ui5.userInteraction.click(CatalogPage.BACK_BUTTON_SELECTOR);
+    }
+
     async clickFilterButton() {
         await ui5.userInteraction.click(CatalogPage.FILTER_BUTTON_SELECTOR);
     }
@@ -84,8 +96,34 @@ class CatalogPage {
         await ui5.userInteraction.click(filterOptionSelector);
     }
 
-    async selectItem (number) {
-        await ui5.userInteraction.click(CatalogPage.PRODUCT_ITEM_SELECTOR, number);
+    async selectItem (index) {
+        await ui5.userInteraction.click(CatalogPage.PRODUCT_ITEM_SELECTOR, index);
+    }
+
+    async selectItem (index, status) {
+        const itemSelector = {
+            "elementProperties": {
+                "viewName": "sap.ui.demo.cart.view.Category",
+                "metadata": "sap.m.ObjectListItem"
+            },
+            "descendantProperties": { 
+                "viewName": "sap.ui.demo.cart.view.Category",
+                "metadata": "sap.m.ObjectStatus",
+                "text": status
+            }
+        }
+        await ui5.userInteraction.click(itemSelector, index);
+    }
+
+    async selectProduct (productName) {
+        const productItemSelector = {
+            "elementProperties": {
+                "viewName": "sap.ui.demo.cart.view.Category",
+                "metadata": "sap.m.ObjectListItem",
+                "title": productName
+            }
+        }
+        await ui5.userInteraction.click(productItemSelector);
     }
         
     async waitForCategoryDisplayed () {

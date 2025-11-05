@@ -40,6 +40,14 @@ class ProductPage {
         }
     }
 
+    static PRODUCT_NAME_SELECTOR = {
+        "elementProperties": {
+            "viewName": "sap.ui.demo.cart.view.Product",
+            "metadata": "sap.m.Text",
+            "id": "*titleText"
+        }
+    }
+
     static PRODUCT_STATUS_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
@@ -67,6 +75,11 @@ class ProductPage {
     
     async addProductToCart() {
         await ui5.userInteraction.click(ProductPage.ADD_TO_CART_BUTTON_SELECTOR);
+    }
+
+    async getProductName() {
+        const productName = await ui5.element.getPropertyValue(ProductPage.PRODUCT_NAME_SELECTOR, "text");
+        return productName;
     }
 
     async getProductStatus() {

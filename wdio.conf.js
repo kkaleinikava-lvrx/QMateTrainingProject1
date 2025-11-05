@@ -23,7 +23,8 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './specs/PlaceOrderInWebShop.spec.js'
+        //'./specs/PlaceOrderInWebShop.spec.js'
+        './specs/PlaceOrderwithMultipleItems.spec.js'
     ],
     // Patterns to exclude.
     exclude: [
