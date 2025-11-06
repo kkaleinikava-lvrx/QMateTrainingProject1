@@ -1,11 +1,20 @@
 Feature: Shopping Cart
   
-    Scenario: Selecting Category
+    Scenario: Placing Order
         Given I can see Shopping cart home screen
         And I can see Catalog
         When I select category "Mice"
-        Then I can see category "Mice" screen
-
+        And I select item 5
+        And I add product to cart from the detailed view
+        And I open shopping cart
+        And I proceed to checkout
+        And I review order details and proceed
+        And I choose Payment method and proceed
+        And I enter credit card details and proceed
+        And I enter invoice address and proceed
+        And I choose delivery type and proceed
+        And I submit order
+        Then I can see order confirmation
 
         
 
