@@ -1,6 +1,5 @@
 class ShoppingCartPage {
      
-    //page locators:
     static PAGE_TITLE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
@@ -17,7 +16,6 @@ class ShoppingCartPage {
         }
     }
 
-    //page actions:  
     async clickProceedButton() {
         await ui5.userInteraction.click(ShoppingCartPage.PROCEED_BUTTON_SELECTOR);  
     }
@@ -31,9 +29,8 @@ class ShoppingCartPage {
                 "bindingContextPath": "/cartEntries/*"
             }
         }
-        const intro = await ui5.control.getProperty(productSelector, "intro");
-        const quantity = parseInt(intro);
-        return quantity;
+        const quantityString = await ui5.control.getProperty(productSelector, "intro");
+        return parseInt(quantityString);
     }
     
     async waitForPageLoaded () {

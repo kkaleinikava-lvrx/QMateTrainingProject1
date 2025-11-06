@@ -1,6 +1,4 @@
 class CatalogPage {
-     
-    //page locators:
 
     static BACK_BUTTON_SELECTOR = {
         "elementProperties": {
@@ -49,9 +47,6 @@ class CatalogPage {
         }
     }
 
-
-    //page actions:  
-
     async clickBackButton() {
         await ui5.userInteraction.click(CatalogPage.BACK_BUTTON_SELECTOR);
     }
@@ -96,11 +91,11 @@ class CatalogPage {
         await ui5.userInteraction.click(filterOptionSelector);
     }
 
-    async selectItem (index) {
+    async selectItemByIndex (index) {
         await ui5.userInteraction.click(CatalogPage.PRODUCT_ITEM_SELECTOR, index);
     }
 
-    async selectItem (index, status) {
+    async selectItemByIndexAndStatus (index, status) {
         const itemSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Category",
@@ -115,7 +110,7 @@ class CatalogPage {
         await ui5.userInteraction.click(itemSelector, index);
     }
 
-    async selectProduct (productName) {
+    async selectItemByProduct (productName) {
         const productItemSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Category",

@@ -8,7 +8,7 @@ describe("Shopping Cart App", function(){
         await CatalogPage.selectCategory("Desktop Computers");
         await CatalogPage.waitForCategoryDisplayed();
 
-        await CatalogPage.selectItem(0, "Available");
+        await CatalogPage.selectItemByIndexAndStatus(0, "Available");
         await ProductPage.waitForPageLoaded();
 
         const firstProductName = await ProductPage.getProductName();
@@ -24,7 +24,7 @@ describe("Shopping Cart App", function(){
         await CatalogPage.selectCategory("Accessories");
         await CatalogPage.waitForCategoryDisplayed();
 
-        await CatalogPage.selectItem(9, "Available");
+        await CatalogPage.selectItemByIndexAndStatus(9, "Available");
         await ProductPage.waitForPageLoaded();
 
         const secondProductName = await ProductPage.getProductName();

@@ -1,6 +1,5 @@
 class ProductPage {
      
-    //page locators:
     static ADD_TO_CART_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
@@ -70,9 +69,6 @@ class ProductPage {
         }
     }
 
-     
-    //page actions:  
-    
     async addProductToCart() {
         await ui5.userInteraction.click(ProductPage.ADD_TO_CART_BUTTON_SELECTOR);
     }
