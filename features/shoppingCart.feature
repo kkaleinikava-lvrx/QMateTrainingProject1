@@ -1,10 +1,12 @@
 Feature: Shopping Cart
   
-    Scenario: Placing Order
+    Scenario: Selecting Category
         Given I can see Shopping cart home screen
         And I can see Catalog
-        When I select category
-        Then I can see category screen
+        When I select category "Mice"
+        Then I can see category "Mice" screen
+
+
         
 
 

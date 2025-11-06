@@ -13,10 +13,13 @@ Given ('I can see Catalog', async function() {
     await CatalogPage.waitForPageLoaded();
 });
 
-When ('I select category', async function() {
-    await CatalogPage.selectCategory("Mice");
+When ('I select category {string}', async function(categoryName) {
+    await CatalogPage.selectCategory(categoryName);
 });
 
-Then ('I can see category screen', async function() {
+Then ('I can see category {string} screen', async function(categoryName) {
     await CatalogPage.waitForCategoryDisplayed();
+    const selectedCategoryName = await CatalogPage.getSelectedCategoryTitle();
+    await common.assertion.expectEqual(selectedCategoryName, categoryName);
+    await util.browser.sleep(5000);
 });
