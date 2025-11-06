@@ -23,8 +23,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        //'./specs/PlaceOrderInWebShop.spec.js'
-        './features/is_it_friday_yet.feature'
+        './features/shoppingCart.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -150,7 +149,7 @@ export const config = {
 
     // Options to be passed to Cucumber.
     cucumberOpts: {
-        require: ['./features/step-definitions/steps.js']
+        require: ['./features/step-definitions/shoppingCartSteps.js']
     },
 
     //
