@@ -204,9 +204,9 @@ export const config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    before: async (capabilities, specs) => {
-        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
-    },
+    // before: async (capabilities, specs) => {
+    //     await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
+    // },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
@@ -247,11 +247,11 @@ export const config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. { attempts: 0, limit: 0 }
      */
-    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
-        if (!passed) {
-            await browser.takeScreenshot();
-        }
-    },
+    // afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+    //     if (!passed) {
+    //         await browser.takeScreenshot();
+    //     }
+    // },
 
 
     /**
@@ -314,5 +314,22 @@ export const config = {
     * @param {object} params information about the assertion that was executed, including its results
     */
     // afterAssertion: function(params) {
+    // }
+
+    /* Cucumber-specific hooks
+     */
+    // beforeFeature: function (uri, feature, scenarios) {
+    // },
+    beforeScenario: async function (uri, feature, scenario, sourceLocation) {
+        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
+    },
+    // beforeStep: function ({uri, feature, step}, context) {
+    // },
+    // afterStep: function ({uri, feature, step}, context, {error, result, duration, passed}) {
+    // },
+    afterScenario: async function (uri, feature, scenario, result, sourceLocation) {
+        await browser.reloadSession();
+    },
+    // afterFeature: function (uri, feature, scenarios) {
     // }
 }
