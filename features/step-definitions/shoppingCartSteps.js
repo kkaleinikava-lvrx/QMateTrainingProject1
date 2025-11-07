@@ -18,7 +18,7 @@ When ('I select category {string}', async function(categoryName) {
 });
 
 When ('I select item {int}', async function(itemIndex) {
-    await CatalogPage.selectItem(itemIndex - 1);
+    await CatalogPage.selectItemByIndex(itemIndex - 1);
     await ProductPage.waitForPageLoaded();
 });
 
