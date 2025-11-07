@@ -11,6 +11,8 @@ describe("Shopping Cart App", function(){
         await CatalogPage.selectItemByIndexAndStatus(0, "Available");
         await ProductPage.waitForPageLoaded();
 
+        const firstProductName = await ProductPage.getProductName();
+
         await ProductPage.addProductToCart();
 
         await CatalogPage.clickBackButton();
@@ -21,6 +23,8 @@ describe("Shopping Cart App", function(){
 
         await CatalogPage.selectItemByIndexAndStatus(9, "Available");
         await ProductPage.waitForPageLoaded();
+
+        const secondProductName = await ProductPage.getProductName();
 
         const itemQuantity = 4;
         for (let i = 0; i < itemQuantity; i++) {
