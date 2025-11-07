@@ -39,6 +39,5 @@ describe("Shopping Cart App", function(){
 
         const secondProductQuantity = await ShoppingCartPage.getQuantityForProductFromShoppingCart(secondProductName);
         await common.assertion.expectEqual(secondProductQuantity, itemQuantity);
-                
     });        
 });
