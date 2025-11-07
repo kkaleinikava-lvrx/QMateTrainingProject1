@@ -1,7 +1,5 @@
 class CheckoutPage {
-     
-    //page locators:
-    
+
     static CARDHOLDER_NAME_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
@@ -176,8 +174,6 @@ class CheckoutPage {
         }
     }
     
-    //page actions:  
-
     async clickCreditCardButton() {
         await ui5.userInteraction.click(CheckoutPage.CREDIT_CARD_BUTTON_SELECTOR);
     }

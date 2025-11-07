@@ -19,7 +19,7 @@ describe("Shopping Cart App", function(){
      
     it("Select Item", async function(){
         //select the 3rd item from the list
-        await CatalogPage.selectItem(2);
+        await CatalogPage.selectItemByIndex(2);
         await ProductPage.waitForPageLoaded();                
     });
 
