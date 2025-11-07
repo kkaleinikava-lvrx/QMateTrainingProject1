@@ -21,7 +21,3 @@ Feature: Shopping Cart
         And I choose delivery type and proceed
         And I submit order
         Then I can see order confirmation
-
-        
-
-
