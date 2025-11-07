@@ -77,8 +77,8 @@ When ('I submit order', async function() {
 });
 
 Then ('I can see order confirmation', async function() {
-    const orderCompletedText = await CheckoutPage.getOrderCompletedText();
-    await common.assertion.expectToContain(orderCompletedText, "Your order number:")
+    const orderNumber = (await CheckoutPage.getOrderCompletedText()).match("Your order number: ([0-9]+)")[1];
+    await common.assertion.expectDefined(orderNumber);
 });
 
 Then ('I can see category {string} screen', async function(categoryName) {
