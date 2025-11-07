@@ -51,6 +51,11 @@ class CatalogPage {
     async clickOkButton() {
         await ui5.userInteraction.click(CatalogPage.OK_BUTTON_SELECTOR);
     }
+
+    async getSelectedCategoryTitle() {
+        const categoryTitle = await ui5.element.getPropertyValue(CatalogPage.CATEGORY_TITLE_SELECTOR,"text");
+        return categoryTitle;
+    }
     
     async selectCategory(categoryName) {
         const categorySelector = {
