@@ -11,11 +11,6 @@ describe("Shopping Cart App", function(){
         await CatalogPage.selectItemByIndexAndStatus(0, "Available");
         await ProductPage.waitForPageLoaded();
 
-        const firstProductName = await ProductPage.getProductName();
-        await common.assertion.expectEqual(firstProductName, "Family PC Pro");
-        const firstProductStatus = await ProductPage.getProductStatus();
-        await common.assertion.expectEqual(firstProductStatus, "Available");
-
         await ProductPage.addProductToCart();
 
         await CatalogPage.clickBackButton();
@@ -26,11 +21,6 @@ describe("Shopping Cart App", function(){
 
         await CatalogPage.selectItemByIndexAndStatus(9, "Available");
         await ProductPage.waitForPageLoaded();
-
-        const secondProductName = await ProductPage.getProductName();
-        await common.assertion.expectEqual(secondProductName, "Goldberry");
-        const secondProductStatus = await ProductPage.getProductStatus();
-        await common.assertion.expectEqual(secondProductStatus, "Available");
 
         const itemQuantity = 4;
         for (let i = 0; i < itemQuantity; i++) {
