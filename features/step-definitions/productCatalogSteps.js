@@ -4,12 +4,12 @@ import HomePage from '../../pages/home.page.js';
 import ProductPage from '../../pages/product.page.js';
 import ShoppingCartPage from '../../pages/shoppingCart.page.js';
 
-let selectedProductsMap = new Map();
+let itemsAddedToCartMap = new Map();
 
 Given ('Home page is open', async function() {
     await HomePage.open();
     await HomePage.waitForPageLoaded();
-    selectedProductsMap.clear();
+    itemsAddedToCartMap.clear();
 });
 
 When ('Select category {string}', async function(categoryName) {
@@ -35,10 +35,10 @@ When ('Add top item from catalog to cart {int} time(s)', async function(quantity
             await ui5.confirmationDialog.clickOk();
         }
     }
-    if (selectedProductsMap.has(productName)) {
-        productDetails.quantity = selectedProductsMap.get(productName).quantity + quantity;
+    if (itemsAddedToCartMap.has(productName)) {
+        productDetails.quantity = itemsAddedToCartMap.get(productName).quantity + quantity;
     }
-    selectedProductsMap.set(productName, productDetails);
+    itemsAddedToCartMap.set(productName, productDetails);
 });
 
 When ('Go back to home page', async function() {
@@ -56,8 +56,8 @@ When ('View cart', async function() {
 });
 
 Then ('Check products in cart', async function() {
-    await common.assertion.expectEqual(selectedProductsMap.size, await ShoppingCartPage.getQuantityOfItemsInShoppingCart());
-    for (let entry of selectedProductsMap) {
+    await common.assertion.expectEqual(itemsAddedToCartMap.size, await ShoppingCartPage.getQuantityOfItemsInShoppingCart());
+    for (let entry of itemsAddedToCartMap) {
         await common.assertion.expectEqual(entry[1].quantity, await ShoppingCartPage.getQuantityForProductFromShoppingCart(entry[0]));
         await common.assertion.expectEqual(entry[1].price, await ShoppingCartPage.getPriceForProductFromShoppingCart(entry[0]));
     }
