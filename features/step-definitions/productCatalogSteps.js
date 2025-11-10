@@ -50,12 +50,12 @@ When ('Search for product {string}', async function(productName) {
     await CatalogPage.searchForProduct(productName);
 });
 
-When ('View cart', async function() {
+When ('Display cart', async function() {
     await ProductPage.showShoppingCart();
     await ShoppingCartPage.waitForPageLoaded();
 });
 
-Then ('Check products in cart', async function() {
+Then ('Verify products in cart', async function() {
     await common.assertion.expectEqual(itemsAddedToCartMap.size, await ShoppingCartPage.getQuantityOfItemsInShoppingCart());
     for (let entry of itemsAddedToCartMap) {
         await common.assertion.expectEqual(entry[1].quantity, await ShoppingCartPage.getQuantityForProductFromShoppingCart(entry[0]));

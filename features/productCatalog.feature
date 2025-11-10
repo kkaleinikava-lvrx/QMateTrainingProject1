@@ -9,11 +9,11 @@ Product catalog allows to select products and add them to the cart
         And Go back to home page
         And Search for product <product_name>
         And Add top item from catalog to cart <quantity> times
-        And View cart
-        Then Check products in cart
+        And Display cart
+        Then Verify products in cart
 
     Examples:
-        | category_name       | product_name              | quantity |
-        |              "Mice" |             "Smart Games" |        3 |
-        | "Desktop Computers" |   "Jet Scan Professional" |        4 |
-        |           "Laptops" |       "Astro Laptop 1516" |        2 |
+        | category_name       | product_name            | quantity |
+        | "Mice"              | "Smart Games"           |        3 |
+        | "Desktop Computers" | "Jet Scan Professional" |        4 |
+        | "Laptops"           | "Astro Laptop 1516"     |        2 |
