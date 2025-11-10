@@ -42,8 +42,16 @@ class CatalogPage {
 
     static PRODUCT_ITEM_SELECTOR = {
         "elementProperties": {
-            "viewName": "sap.ui.demo.cart.view.Category",
-            "metadata": "sap.m.ObjectListItem"
+            "metadata": "sap.m.ObjectListItem",
+            "id": "*productList*"
+        }
+    }
+
+    static SEARCH_FIELD_SELECTOR = {
+        "elementProperties": {
+            "viewName": "sap.ui.demo.cart.view.Home",
+            "metadata": "sap.m.SearchField",
+            "id": "*searchField"
         }
     }
 
@@ -64,6 +72,10 @@ class CatalogPage {
         return categoryTitle;
     }
     
+    async searchForProduct(searchText) {
+        await ui5.userInteraction.clearAndFill(CatalogPage.SEARCH_FIELD_SELECTOR, searchText);
+    }
+
     async selectCategory(categoryName) {
         const categorySelector = {
              "elementProperties": {

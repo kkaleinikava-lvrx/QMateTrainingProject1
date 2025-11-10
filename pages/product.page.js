@@ -47,6 +47,13 @@ class ProductPage {
         }
     }
 
+    static PRODUCT_PRICE_SELECTOR = {
+        "elementProperties": {
+            "viewName": "sap.ui.demo.cart.view.Product",
+            "metadata": "sap.m.ObjectNumber"
+        }
+    }
+
     static PRODUCT_STATUS_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
@@ -74,13 +81,15 @@ class ProductPage {
     }
 
     async getProductName() {
-        const productName = await ui5.element.getPropertyValue(ProductPage.PRODUCT_NAME_SELECTOR, "text");
-        return productName;
+        return await ui5.element.getPropertyValue(ProductPage.PRODUCT_NAME_SELECTOR, "text");
+    }
+
+    async getProductPrice() {
+        return await ui5.element.getPropertyValue(ProductPage.PRODUCT_PRICE_SELECTOR, "number");
     }
 
     async getProductStatus() {
-        const productStatus = await ui5.element.getPropertyValue(ProductPage.PRODUCT_STATUS_SELECTOR, "text");
-        return productStatus;
+        return await ui5.element.getPropertyValue(ProductPage.PRODUCT_STATUS_SELECTOR, "text");
     }
 
     async login() {
