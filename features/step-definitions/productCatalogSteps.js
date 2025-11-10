@@ -16,20 +16,24 @@ When ('Select category {string}', async function(categoryName) {
     await CatalogPage.selectCategory(categoryName);
 });
 
-When ('Filter by availabilty', async function() {
+When ('Filter by availabilty status {string}', async function(status) {
     await CatalogPage.clickFilterButton();
     await CatalogPage.selectFilter("Availability");
-    await CatalogPage.selectFilterOption("Available");
+    await CatalogPage.selectFilterOption(status);
     await CatalogPage.clickOkButton();
 });
 
-When ('Add top item from catalog to cart {int} times', async function(quantity) {
+When ('Add top item from catalog to cart {int} time(s)', async function(quantity) {
     await CatalogPage.selectItemByIndex(0);
     await ProductPage.waitForPageLoaded();
     const productName =  await ProductPage.getProductName();
+    const isProductOutOfStock = await ProductPage.getProductStatus() === "Out of Stock";
     let productDetails = { quantity: quantity, price: await ProductPage.getProductPrice() };
     for (let i = 0; i < quantity; i++) {
         await ProductPage.addProductToCart();
+        if (isProductOutOfStock) {
+            await ui5.confirmationDialog.clickOk();
+        }
     }
     if (selectedProductsMap.has(productName)) {
         productDetails.quantity = selectedProductsMap.get(productName).quantity + quantity;
