@@ -23,22 +23,25 @@ When ('Filter by availabilty status {string}', async function(status) {
     await CatalogPage.clickOkButton();
 });
 
-When ('Add top item from catalog to cart {int} time(s)', {timeout: 900000}, async function(quantity) {
+When ('Add top item from catalog to cart {int} time(s)', {timeout: 900000}, async function(itemQuantity) {
     await CatalogPage.selectItemByIndex(0);
     await ProductPage.waitForPageLoaded();
-    const productName =  await ProductPage.getProductName();
-    const isProductOutOfStock = await ProductPage.getProductStatus() === "Out of Stock";
-    let productDetails = { quantity: quantity, price: await ProductPage.getProductPrice() };
-    for (let i = 0; i < quantity; i++) {
+    
+    const isProductOutOfStock = (await ProductPage.getProductStatus() === "Out of Stock");
+    for (let i = 0; i < itemQuantity; i++) {
         await ProductPage.addProductToCart();
         if (isProductOutOfStock) {
             await ui5.confirmationDialog.clickOk();
         }
     }
-    if (itemsAddedToCartMap.has(productName)) {
-        productDetails.quantity = itemsAddedToCartMap.get(productName).quantity + quantity;
+
+    const productName =  await ProductPage.getProductName();
+    const productPrice =  await ProductPage.getProductPrice();
+    let productDetails = { name: productName, quantity: itemQuantity, price: productPrice };
+    if (itemsAddedToCartMap.has(productName + productPrice)) {
+        productDetails.quantity = itemsAddedToCartMap.get(productName + productPrice).quantity + itemQuantity;
     }
-    itemsAddedToCartMap.set(productName, productDetails);
+    itemsAddedToCartMap.set(productName + productPrice, productDetails);
 });
 
 When ('Go back to home page', async function() {
@@ -57,8 +60,8 @@ When ('Display cart', async function() {
 
 Then ('Verify products in cart', async function() {
     await common.assertion.expectEqual(itemsAddedToCartMap.size, await ShoppingCartPage.getQuantityOfItemsInShoppingCart());
-    for (let entry of itemsAddedToCartMap) {
-        await common.assertion.expectEqual(entry[1].quantity, await ShoppingCartPage.getQuantityForProductFromShoppingCart(entry[0]));
-        await common.assertion.expectEqual(entry[1].price, await ShoppingCartPage.getPriceForProductFromShoppingCart(entry[0]));
+    for (let item of itemsAddedToCartMap) {
+        await common.assertion.expectEqual(item[1].quantity, 
+            await ShoppingCartPage.getQuantityForProductFromShoppingCart(item[1].name, item[1].price));
     }
 });

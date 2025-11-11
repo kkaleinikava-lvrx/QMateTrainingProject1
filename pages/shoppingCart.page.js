@@ -24,27 +24,35 @@ class ShoppingCartPage {
         }
     }
         
-    static getCartItemSelector(productName) {
+    static getCartItemSelector(productName, price) {
+        if (arguments.length == 1) {
+            return {
+                "elementProperties": {
+                    "viewName": "sap.ui.demo.cart.view.Cart",
+                    "metadata": "sap.m.ObjectListItem",
+                    "title": productName,
+                    "bindingContextPath": "/cartEntries/*"
+                }
+            }
+
+        }
         return {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Cart",
                 "metadata": "sap.m.ObjectListItem",
                 "title": productName,
+                "number": price,
                 "bindingContextPath": "/cartEntries/*"
             }
-        }; 
+        }
     }
 
     async clickProceedButton() {
         await ui5.userInteraction.click(ShoppingCartPage.PROCEED_BUTTON_SELECTOR);  
     }
 
-    async getPriceForProductFromShoppingCart(productName) {
-        return await ui5.control.getProperty(ShoppingCartPage.getCartItemSelector(productName), "number");
-    }
-
-    async getQuantityForProductFromShoppingCart(productName) {
-        return parseInt(await ui5.control.getProperty(ShoppingCartPage.getCartItemSelector(productName), "intro"));
+    async getQuantityForProductFromShoppingCart(productName, price) {
+        return parseInt(await ui5.control.getProperty(ShoppingCartPage.getCartItemSelector(productName, price), "intro"));
     }
 
     async getQuantityOfItemsInShoppingCart() {      
