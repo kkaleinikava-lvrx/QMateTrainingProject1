@@ -4,7 +4,7 @@ import HomePage from '../../pages/home.page.js';
 import ProductPage from '../../pages/product.page.js';
 import ShoppingCartPage from '../../pages/shoppingCart.page.js';
 
-let itemsAddedToCartMap = new Map();
+const itemsAddedToCartMap = new Map();
 
 Given ('Home page is open', async function() {
     await HomePage.open();

@@ -25,26 +25,20 @@ class ShoppingCartPage {
     }
         
     static getCartItemSelector(productName, price) {
-        if (arguments.length == 1) {
-            return {
-                "elementProperties": {
-                    "viewName": "sap.ui.demo.cart.view.Cart",
-                    "metadata": "sap.m.ObjectListItem",
-                    "title": productName,
-                    "bindingContextPath": "/cartEntries/*"
-                }
-            }
-
-        }
-        return {
+        const cartItemSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Cart",
                 "metadata": "sap.m.ObjectListItem",
                 "title": productName,
-                "number": price,
                 "bindingContextPath": "/cartEntries/*"
             }
         }
+        if (arguments.length == 1) {
+            return cartItemSelector;
+        }
+        
+        cartItemSelector.number = price;
+        return cartItemSelector;
     }
 
     async clickProceedButton() {

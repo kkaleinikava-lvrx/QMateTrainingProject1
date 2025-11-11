@@ -1,7 +1,7 @@
 Feature: Product Catalog
 Product catalog allows to select products and add them to the cart
 
-    Scenario Outline: Selecting Products
+    Scenario Outline: Selecting Products and Adding Them to Cart
         Given Home page is open
         When Select category <category_name>
         And Filter by availabilty status "Available"
