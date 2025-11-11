@@ -136,7 +136,9 @@ export const config = {
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec',
         ['allure', {
-            outputDir: 'allure-results'
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false
         }]
     ],
 
@@ -325,8 +327,9 @@ export const config = {
     },
     // beforeStep: function ({uri, feature, step}, context) {
     // },
-    // afterStep: function ({uri, feature, step}, context, {error, result, duration, passed}) {
-    // },
+    afterStep: async function ({uri, feature, step}, context, {error, result, duration, passed}) {
+        await browser.takeScreenshot();
+    },
     afterScenario: async function (uri, feature, scenario, result, sourceLocation) {
         await browser.reloadSession();
     },

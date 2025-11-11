@@ -14,6 +14,7 @@ Given ('Home page is open', async function() {
 
 When ('Select category {string}', async function(categoryName) {
     await CatalogPage.selectCategory(categoryName);
+    await CatalogPage.waitForCategoryDisplayed();
 });
 
 When ('Filter by availabilty status {string}', async function(status) {
@@ -21,6 +22,7 @@ When ('Filter by availabilty status {string}', async function(status) {
     await CatalogPage.selectFilter("Availability");
     await CatalogPage.selectFilterOption(status);
     await CatalogPage.clickOkButton();
+    await CatalogPage.waitForProductListDisplayed();
 });
 
 When ('Add top item from catalog to cart {int} time(s)', {timeout: 900000}, async function(itemQuantity) {
@@ -51,6 +53,7 @@ When ('Go back to home page', async function() {
 
 When ('Search for product {string}', async function(productName) {
     await CatalogPage.searchForProduct(productName);
+    await CatalogPage.waitForProductListDisplayed();
 });
 
 When ('Display cart', async function() {
