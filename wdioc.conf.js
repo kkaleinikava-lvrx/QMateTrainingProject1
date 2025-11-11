@@ -329,6 +329,9 @@ export const config = {
     // },
     afterStep: async function ({uri, feature, step}, context, {error, result, duration, passed}) {
         await browser.takeScreenshot();
+        if (error) {
+            await browser.takeScreenshot();
+        }
     },
     afterScenario: async function (uri, feature, scenario, result, sourceLocation) {
         await browser.reloadSession();

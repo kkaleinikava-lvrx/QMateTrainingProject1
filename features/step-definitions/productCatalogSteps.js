@@ -21,6 +21,7 @@ When ('Filter by availabilty status {string}', async function(status) {
     await CatalogPage.clickFilterButton();
     await CatalogPage.selectFilter("Availability");
     await CatalogPage.selectFilterOption(status);
+    await browser.takeScreenshot();
     await CatalogPage.clickOkButton();
     await CatalogPage.waitForProductListDisplayed();
 });
