@@ -14,6 +14,6 @@ Product catalog allows to select products and add them to the cart
 
     Examples:
         | category_name       | product_name            | quantity |
-        | "Mice"              | "Smart Games"           |        3 |
+        | "Mice"              | "Smart Games"           |       13 |
         | "Desktop Computers" | "Jet Scan Professional" |        4 |
         | "Laptops"           | "Astro Laptop 1516"     |        2 |

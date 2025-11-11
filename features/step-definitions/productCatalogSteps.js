@@ -23,7 +23,7 @@ When ('Filter by availabilty status {string}', async function(status) {
     await CatalogPage.clickOkButton();
 });
 
-When ('Add top item from catalog to cart {int} time(s)', async function(quantity) {
+When ('Add top item from catalog to cart {int} time(s)', {timeout: 900000}, async function(quantity) {
     await CatalogPage.selectItemByIndex(0);
     await ProductPage.waitForPageLoaded();
     const productName =  await ProductPage.getProductName();
