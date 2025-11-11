@@ -38,13 +38,16 @@ When ('Add top item from catalog to cart {int} time(s)', {timeout: 900000}, asyn
         }
     }
 
-    const productName =  await ProductPage.getProductName();
-    const productPrice =  await ProductPage.getProductPrice();
-    let productDetails = { name: productName, quantity: itemQuantity, price: productPrice };
-    if (itemsAddedToCartMap.has(productName + productPrice)) {
-        productDetails.quantity = itemsAddedToCartMap.get(productName + productPrice).quantity + itemQuantity;
+    const productDetails = { 
+        name: await ProductPage.getProductName(), 
+        quantity: itemQuantity, 
+        price: await ProductPage.getProductPrice() 
     }
-    itemsAddedToCartMap.set(productName + productPrice, productDetails);
+    const itemKey =  productDetails.name + productDetails.price;
+    if (itemsAddedToCartMap.has(itemKey)) {
+        productDetails.quantity = itemsAddedToCartMap.get(itemKey).quantity + itemQuantity;
+    }
+    itemsAddedToCartMap.set(itemKey, productDetails);
 });
 
 When ('Go back to home page', async function() {
