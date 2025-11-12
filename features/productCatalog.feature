@@ -9,7 +9,7 @@ Product catalog allows to select products and add them to the cart
         And Go back to home page
         And Search for product <product_name>
         And Add top item from catalog to cart <quantity> times
-        And Display cart
+        And Open cart
         Then Verify products in cart
 
     Examples:

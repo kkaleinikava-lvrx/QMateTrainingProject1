@@ -60,7 +60,7 @@ When ('Search for product {string}', async function(productName) {
     await CatalogPage.waitForProductListDisplayed();
 });
 
-When ('Display cart', async function() {
+When ('Open cart', async function() {
     await ProductPage.showShoppingCart();
     await ShoppingCartPage.waitForPageLoaded();
 });
