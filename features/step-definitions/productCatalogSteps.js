@@ -26,7 +26,7 @@ When ('Filter by availabilty status {string}', async function(status) {
     await CatalogPage.waitForProductListDisplayed();
 });
 
-When ('Add top item from catalog to cart {int} time(s)', {timeout: 900000}, async function(itemQuantity) {
+When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async function(itemQuantity) {
     await CatalogPage.selectItemByIndex(0);
     await ProductPage.waitForPageLoaded();
     
