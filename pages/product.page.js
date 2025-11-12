@@ -27,15 +27,8 @@ class ProductPage {
     static PRODUCT_IMAGE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
-            "metadata": "sap.m.ToggleButton",
-            "tooltip": [
-                {
-                    "model": "i18n",
-                    "path": "toCartButtonTooltip",
-                    "value": "Show Shopping Cart",
-                    "type": "string"
-                }
-            ]
+            "metadata": "sap.m.Image",
+            "id": "*productImage"
         }
     }
 
