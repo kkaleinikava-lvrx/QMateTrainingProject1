@@ -77,6 +77,13 @@ class ProductPage {
     }
 
     async addProductToCart() {
+        await this.clickAddToCart();
+        if (await this.getProductStatus() === "Out of Stock") {
+            await ui5.confirmationDialog.clickOk();
+        }
+    }
+
+    async clickAddToCart() {
         await ui5.userInteraction.click(ProductPage.ADD_TO_CART_BUTTON_SELECTOR);
     }
 

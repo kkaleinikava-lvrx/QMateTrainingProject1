@@ -30,12 +30,8 @@ When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async
     await CatalogPage.selectItemByIndex(0);
     await ProductPage.waitForPageLoaded();
     
-    const isProductOutOfStock = (await ProductPage.getProductStatus() === "Out of Stock");
     for (let i = 0; i < itemQuantity; i++) {
         await ProductPage.addProductToCart();
-        if (isProductOutOfStock) {
-            await ui5.confirmationDialog.clickOk();
-        }
     }
 
     const productDetails = { 
