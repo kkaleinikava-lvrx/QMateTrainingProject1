@@ -207,7 +207,7 @@ export const config = {
      * @param {object}         browser      instance of created browser/device session
      */
     // before: async (capabilities, specs) => {
-    //     await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
+        // await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
     // },
     /**
      * Runs before a WebdriverIO command gets executed.
@@ -323,18 +323,16 @@ export const config = {
     // beforeFeature: function (uri, feature, scenarios) {
     // },
     beforeScenario: async function (uri, feature, scenario, sourceLocation) {
-        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
+        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html');
+        this.reset(); 
     },
     // beforeStep: function ({uri, feature, step}, context) {
     // },
     afterStep: async function ({uri, feature, step}, context, {error, result, duration, passed}) {
         await browser.takeScreenshot();
-        // if (error) {
-        //     await browser.takeScreenshot();
-        // }
     },
     afterScenario: async function (uri, feature, scenario, result, sourceLocation) {
-        await browser.reloadSession();
+        await util.browser.clearBrowser();
     },
     // afterFeature: function (uri, feature, scenarios) {
     // }

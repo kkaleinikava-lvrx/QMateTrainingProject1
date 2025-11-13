@@ -1,15 +1,20 @@
-import { Given, When, Then } from '@wdio/cucumber-framework';
+import { Before, Given, When, Then, setWorldConstructor } from '@wdio/cucumber-framework';
 import CatalogPage from '../../pages/catalog.page.js';
 import HomePage from '../../pages/home.page.js';
 import ProductPage from '../../pages/product.page.js';
 import ShoppingCartPage from '../../pages/shoppingCart.page.js';
 
-const itemsAddedToCartMap = new Map();
+import CustomWorld from "../../classes/CustomWorld.js"
+
+setWorldConstructor(CustomWorld);
+
+Before(async function(scenario) {
+    await this.init();
+});
 
 Given ('Home page is open', async function() {
     await HomePage.open();
     await HomePage.waitForPageLoaded();
-    itemsAddedToCartMap.clear();
 });
 
 When ('Select category {string}', async function(categoryName) {
@@ -34,16 +39,7 @@ When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async
         await ProductPage.addProductToCart();
     }
 
-    const productDetails = { 
-        name: await ProductPage.getProductName(), 
-        quantity: itemQuantity, 
-        price: await ProductPage.getProductPrice() 
-    }
-    const itemKey =  productDetails.name + productDetails.price;
-    if (itemsAddedToCartMap.has(itemKey)) {
-        productDetails.quantity = itemsAddedToCartMap.get(itemKey).quantity + itemQuantity;
-    }
-    itemsAddedToCartMap.set(itemKey, productDetails);
+    this.addProductToCart(await ProductPage.getProductName(), await ProductPage.getProductPrice(), itemQuantity);
 });
 
 When ('Go back to home page', async function() {
@@ -62,9 +58,6 @@ When ('Open cart', async function() {
 });
 
 Then ('Verify products in cart', async function() {
-    await common.assertion.expectEqual(itemsAddedToCartMap.size, await ShoppingCartPage.getQuantityOfItemsInShoppingCart());
-    for (let item of itemsAddedToCartMap) {
-        await common.assertion.expectEqual(item[1].quantity, 
-            await ShoppingCartPage.getQuantityForProductFromShoppingCart(item[1].name, item[1].price));
-    }
+    await common.assertion.expectTrue(
+        this.matchesExpectedItemsInCart(await ShoppingCartPage.getItemListInShoppongCart()));  
 });

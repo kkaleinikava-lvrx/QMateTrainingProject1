@@ -45,8 +45,16 @@ class ShoppingCartPage {
         await ui5.userInteraction.click(ShoppingCartPage.PROCEED_BUTTON_SELECTOR);  
     }
 
-    async getQuantityForProductFromShoppingCart(productName, price) {
-        return parseInt(await ui5.control.getProperty(ShoppingCartPage.getCartItemSelector(productName, price), "intro"));
+    async getItemListInShoppongCart() {
+        const itemsInCartArray = new Array();
+        for (let i = 0; i < await this.getQuantityOfItemsInShoppingCart(); i++) {
+            itemsInCartArray.push({ 
+                name: await ui5.element.getPropertyValue(ShoppingCartPage.CART_ENRTY_SELECTOR, "title", i), 
+                price: await ui5.element.getPropertyValue(ShoppingCartPage.CART_ENRTY_SELECTOR, "number", i),
+                quantity: parseInt(await ui5.element.getPropertyValue(ShoppingCartPage.CART_ENRTY_SELECTOR, "intro", i))
+            });
+        }
+        return itemsInCartArray;
     }
 
     async getQuantityOfItemsInShoppingCart() {      
