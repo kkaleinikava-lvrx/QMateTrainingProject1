@@ -80,7 +80,7 @@ class CatalogPage {
     }
     
     async searchForProduct(searchText) {
-        await ui5.userInteraction.clearAndFill(CatalogPage.SEARCH_FIELD_SELECTOR, searchText);
+        await ui5.userInteraction.searchFor(CatalogPage.SEARCH_FIELD_SELECTOR, searchText);
     }
 
     async selectCategory(categoryName) {
