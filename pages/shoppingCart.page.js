@@ -57,6 +57,10 @@ class ShoppingCartPage {
         return itemsInCartArray;
     }
 
+    async getQuantityForProductFromShoppingCart(productName, price) {
+        return parseInt(await ui5.control.getProperty(ShoppingCartPage.getCartItemSelector(productName, price), "intro"));
+    }
+
     async getQuantityOfItemsInShoppingCart() {      
         const cartItemsArray = await ui5.element.getAllDisplayed(ShoppingCartPage.CART_ENRTY_SELECTOR);
         return cartItemsArray.length;
