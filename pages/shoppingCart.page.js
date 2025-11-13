@@ -46,7 +46,7 @@ class ShoppingCartPage {
     }
 
     async getItemListInShoppongCart() {
-        const itemsInCartArray = new Array();
+        const itemsInCartArray = [];
         for (let i = 0; i < await this.getQuantityOfItemsInShoppingCart(); i++) {
             itemsInCartArray.push({ 
                 name: await ui5.element.getPropertyValue(ShoppingCartPage.CART_ENRTY_SELECTOR, "title", i), 

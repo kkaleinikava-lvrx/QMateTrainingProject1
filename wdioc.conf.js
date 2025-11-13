@@ -324,12 +324,13 @@ export const config = {
     // },
     beforeScenario: async function (uri, feature, scenario, sourceLocation) {
         await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html');
-        this.reset(); 
     },
     // beforeStep: function ({uri, feature, step}, context) {
     // },
     afterStep: async function ({uri, feature, step}, context, {error, result, duration, passed}) {
-        await browser.takeScreenshot();
+        if (error) {
+            await browser.takeScreenshot();
+        }
     },
     afterScenario: async function (uri, feature, scenario, result, sourceLocation) {
         await util.browser.clearBrowser();

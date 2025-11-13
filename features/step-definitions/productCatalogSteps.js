@@ -1,25 +1,23 @@
-import { Before, Given, When, Then, setWorldConstructor } from '@wdio/cucumber-framework';
+import { Given, When, Then, setWorldConstructor } from '@wdio/cucumber-framework';
 import CatalogPage from '../../pages/catalog.page.js';
 import HomePage from '../../pages/home.page.js';
 import ProductPage from '../../pages/product.page.js';
 import ShoppingCartPage from '../../pages/shoppingCart.page.js';
 
-import CustomWorld from "../../classes/CustomWorld.js"
+import CustomWorld from "../../classes/CustomWorld.js";
 
 setWorldConstructor(CustomWorld);
-
-Before(async function(scenario) {
-    await this.init();
-});
 
 Given ('Home page is open', async function() {
     await HomePage.open();
     await HomePage.waitForPageLoaded();
+    await browser.takeScreenshot();
 });
 
 When ('Select category {string}', async function(categoryName) {
     await CatalogPage.selectCategory(categoryName);
     await CatalogPage.waitForCategoryDisplayed();
+    await browser.takeScreenshot();
 });
 
 When ('Filter by availabilty status {string}', async function(status) {
@@ -29,6 +27,7 @@ When ('Filter by availabilty status {string}', async function(status) {
     await browser.takeScreenshot();
     await CatalogPage.clickOkButton();
     await CatalogPage.waitForProductListDisplayed();
+    await browser.takeScreenshot();
 });
 
 When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async function(itemQuantity) {
@@ -38,26 +37,40 @@ When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async
     for (let i = 0; i < itemQuantity; i++) {
         await ProductPage.addProductToCart();
     }
+    await browser.takeScreenshot();
 
-    this.addProductToCart(await ProductPage.getProductName(), await ProductPage.getProductPrice(), itemQuantity);
+    this.addItemToListOfProductsInCart({
+        name: await ProductPage.getProductName(), 
+        price: await ProductPage.getProductPrice(), 
+        quantity: itemQuantity
+    });
 });
 
 When ('Go back to home page', async function() {
     await CatalogPage.clickBackButton();
     await HomePage.waitForPageLoaded();
+    await browser.takeScreenshot();
 });
 
 When ('Search for product {string}', async function(productName) {
     await CatalogPage.searchForProduct(productName);
     await CatalogPage.waitForProductListDisplayed();
+    await browser.takeScreenshot();
 });
 
 When ('Open cart', async function() {
     await ProductPage.showShoppingCart();
     await ShoppingCartPage.waitForPageLoaded();
+    await browser.takeScreenshot();
 });
 
 Then ('Verify products in cart', async function() {
-    await common.assertion.expectTrue(
-        this.matchesExpectedItemsInCart(await ShoppingCartPage.getItemListInShoppongCart()));  
+    const expectedItems = this.getListOfProductsExpectedInCart();
+    const actualItems = await ShoppingCartPage.getItemListInShoppongCart();
+    common.assertion.expectEqual(expectedItems.length, actualItems.length);
+    for (let expectedItem of expectedItems) {
+        await common.assertion.expectTrue(actualItems.some(actualItem => {                
+            return JSON.stringify(actualItem) == JSON.stringify(expectedItem)
+        }));
+    }
 });
