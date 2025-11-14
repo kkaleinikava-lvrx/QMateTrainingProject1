@@ -23,23 +23,6 @@ class ShoppingCartPage {
             "id": "*proceedButton"
         }
     }
-        
-    static getCartItemSelector(productName, price) {
-        const cartItemSelector = {
-            "elementProperties": {
-                "viewName": "sap.ui.demo.cart.view.Cart",
-                "metadata": "sap.m.ObjectListItem",
-                "title": productName,
-                "bindingContextPath": "/cartEntries/*"
-            }
-        }
-        if (arguments.length == 1) {
-            return cartItemSelector;
-        }
-        
-        cartItemSelector.number = price;
-        return cartItemSelector;
-    }
 
     async clickProceedButton() {
         await ui5.userInteraction.click(ShoppingCartPage.PROCEED_BUTTON_SELECTOR);  
@@ -57,8 +40,17 @@ class ShoppingCartPage {
         return itemsInCartArray;
     }
 
-    async getQuantityForProductFromShoppingCart(productName, price) {
-        return parseInt(await ui5.control.getProperty(ShoppingCartPage.getCartItemSelector(productName, price), "intro"));
+    async getQuantityForProductFromShoppingCart(productName) {
+        const productSelector = {
+            "elementProperties": {
+                "viewName": "sap.ui.demo.cart.view.Cart",
+                "metadata": "sap.m.ObjectListItem",
+                "title": productName,
+                "bindingContextPath": "/cartEntries/*"
+            }
+        }
+        const quantityString = await ui5.control.getProperty(productSelector, "intro");
+        return parseInt(quantityString);
     }
 
     async getQuantityOfItemsInShoppingCart() {      
