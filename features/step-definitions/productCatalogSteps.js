@@ -39,7 +39,7 @@ When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async
     }
     await browser.takeScreenshot();
 
-    this.addItemToListOfProductsInCart({
+    this.addProductToDataStorage({
         name: await ProductPage.getProductName(), 
         price: await ProductPage.getProductPrice(), 
         quantity: itemQuantity
@@ -65,12 +65,9 @@ When ('Open cart', async function() {
 });
 
 Then ('Verify products in cart', async function() {
-    const expectedItems = this.getListOfProductsExpectedInCart();
+    const expectedItems = this.getProductsFromDataStorage();
     const actualItems = await ShoppingCartPage.getItemListInShoppongCart();
-    common.assertion.expectEqual(expectedItems.length, actualItems.length);
-    for (let expectedItem of expectedItems) {
-        await common.assertion.expectTrue(actualItems.some(actualItem => {                
-            return JSON.stringify(actualItem) == JSON.stringify(expectedItem)
-        }));
-    }
+    expectedItems.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    actualItems.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    common.assertion.expectEqual(expectedItems, actualItems);
 });

@@ -7,7 +7,7 @@ export default class extends World {
         this.itemsAddedToCart = [];
     }
 
-    addItemToListOfProductsInCart(product) {
+    addProductToDataStorage(product) {
         const existingItem = this.itemsAddedToCart.find(item => {
             return item.name === product.name && item.price === product.price;
         });
@@ -19,7 +19,7 @@ export default class extends World {
         }    
     }
 
-    getListOfProductsExpectedInCart() {
+    getProductsFromDataStorage() {
         return this.itemsAddedToCart;
     }
 }
