@@ -27,15 +27,8 @@ class ProductPage {
     static PRODUCT_IMAGE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
-            "metadata": "sap.m.ToggleButton",
-            "tooltip": [
-                {
-                    "model": "i18n",
-                    "path": "toCartButtonTooltip",
-                    "value": "Show Shopping Cart",
-                    "type": "string"
-                }
-            ]
+            "metadata": "sap.m.Image",
+            "id": "*productImage"
         }
     }
 
@@ -44,6 +37,13 @@ class ProductPage {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Text",
             "id": "*titleText"
+        }
+    }
+
+    static PRODUCT_PRICE_SELECTOR = {
+        "elementProperties": {
+            "viewName": "sap.ui.demo.cart.view.Product",
+            "metadata": "sap.m.ObjectNumber"
         }
     }
 
@@ -70,17 +70,26 @@ class ProductPage {
     }
 
     async addProductToCart() {
+        await this.clickAddToCartButton();
+        if (await this.getProductStatus() === "Out of Stock") {
+            await ui5.confirmationDialog.clickOk();
+        }
+    }
+
+    async clickAddToCartButton() {
         await ui5.userInteraction.click(ProductPage.ADD_TO_CART_BUTTON_SELECTOR);
     }
 
     async getProductName() {
-        const productName = await ui5.element.getPropertyValue(ProductPage.PRODUCT_NAME_SELECTOR, "text");
-        return productName;
+        return await ui5.element.getPropertyValue(ProductPage.PRODUCT_NAME_SELECTOR, "text");
+    }
+
+    async getProductPrice() {
+        return await ui5.element.getPropertyValue(ProductPage.PRODUCT_PRICE_SELECTOR, "number");
     }
 
     async getProductStatus() {
-        const productStatus = await ui5.element.getPropertyValue(ProductPage.PRODUCT_STATUS_SELECTOR, "text");
-        return productStatus;
+        return await ui5.element.getPropertyValue(ProductPage.PRODUCT_STATUS_SELECTOR, "text");
     }
 
     async login() {

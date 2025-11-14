@@ -23,7 +23,7 @@ export const config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        './features/shoppingCart.feature'
+        './features/productCatalog.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -136,7 +136,9 @@ export const config = {
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec',
         ['allure', {
-            outputDir: 'allure-results'
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false
         }]
     ],
 
@@ -149,7 +151,7 @@ export const config = {
 
     // Options to be passed to Cucumber.
     cucumberOpts: {
-        require: ['./features/step-definitions/shoppingCartSteps.js']
+        require: ['./features/step-definitions/productCatalogSteps.js']
     },
 
     //
@@ -205,7 +207,7 @@ export const config = {
      * @param {object}         browser      instance of created browser/device session
      */
     // before: async (capabilities, specs) => {
-    //     await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
+        // await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
     // },
     /**
      * Runs before a WebdriverIO command gets executed.
@@ -321,14 +323,17 @@ export const config = {
     // beforeFeature: function (uri, feature, scenarios) {
     // },
     beforeScenario: async function (uri, feature, scenario, sourceLocation) {
-        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html'); 
+        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html');
     },
     // beforeStep: function ({uri, feature, step}, context) {
     // },
-    // afterStep: function ({uri, feature, step}, context, {error, result, duration, passed}) {
-    // },
+    afterStep: async function ({uri, feature, step}, context, {error, result, duration, passed}) {
+        if (error) {
+            await browser.takeScreenshot();
+        }
+    },
     afterScenario: async function (uri, feature, scenario, result, sourceLocation) {
-        await browser.reloadSession();
+        await util.browser.clearBrowser();
     },
     // afterFeature: function (uri, feature, scenarios) {
     // }

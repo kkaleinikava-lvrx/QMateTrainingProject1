@@ -14,7 +14,7 @@ class HomePage {
     }
   
     async open () {
-        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.htm')
+        await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html');
     } 
 
     async waitForPageLoaded () {
