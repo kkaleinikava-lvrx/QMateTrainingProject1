@@ -1,6 +1,7 @@
 import { browser } from '@wdio/globals';
+import { Page } from './page.ts';
 
-class HomePage {
+class HomePage extends Page {
 
     static PAGE_TITLE_SELECTOR = {
         "elementProperties": {

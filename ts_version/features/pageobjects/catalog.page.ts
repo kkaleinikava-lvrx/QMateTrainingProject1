@@ -1,4 +1,6 @@
-class CatalogPage {
+import { Page } from './page.ts';
+
+class CatalogPage extends Page {
 
     static BACK_BUTTON_SELECTOR = {
         "elementProperties": {

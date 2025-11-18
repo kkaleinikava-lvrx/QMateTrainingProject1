@@ -1,4 +1,6 @@
-class ProductPage {
+import { Page } from './page.ts';
+
+class ProductPage extends Page {
      
     static ADD_TO_CART_BUTTON_SELECTOR = {
         "elementProperties": {

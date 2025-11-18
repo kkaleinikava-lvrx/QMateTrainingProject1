@@ -1,4 +1,6 @@
-class ShoppingCartPage {
+import { Page } from './page.ts';
+
+class ShoppingCartPage extends Page {
      
     static CART_ENRTY_SELECTOR = {
         "elementProperties": {
