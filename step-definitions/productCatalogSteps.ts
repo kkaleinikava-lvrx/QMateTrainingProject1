@@ -1,12 +1,12 @@
 import { Given, When, Then, setWorldConstructor } from '@wdio/cucumber-framework';
-import CatalogPage from '../../pageobjects/catalog.page.ts';
-import HomePage from '../../pageobjects/home.page.ts';
-import ProductPage from '../../pageobjects/product.page.ts';
-import ShoppingCartPage from '../../pageobjects/shoppingCart.page.ts';
+import CatalogPage from '../pageobjects/catalog.page.ts';
+import HomePage from '../pageobjects/home.page.ts';
+import ProductPage from '../pageobjects/product.page.ts';
+import ShoppingCartPage from '../pageobjects/shoppingCart.page.ts';
 
-import CustomWorld from "../../classes/CustomWorld.ts";
-import { Product } from "../../classes/interfaces.ts";
-import { Filter } from "../../classes/enums.ts"
+import CustomWorld from "./CustomWorld.ts";
+import { Product } from "../Product.ts";
+import { Filter } from "../Filter.ts"
 
 setWorldConstructor(CustomWorld);
 
