@@ -5,7 +5,7 @@ import ProductPage from '../pageobjects/product.page.ts';
 import ShoppingCartPage from '../pageobjects/shoppingCart.page.ts';
 
 import CustomWorld from "../../classes/CustomWorld.ts";
-import { Product } from "../../classes/types.ts"
+import { Product, FilterBy } from "../../classes/types.ts"
 
 setWorldConstructor(CustomWorld);
 
@@ -23,7 +23,7 @@ When ('Select category {string}', async function(categoryName: string): Promise<
 
 When ('Filter by availabilty status {string}', async function(status: string): Promise<void> {
     await CatalogPage.clickFilterButton();
-    await CatalogPage.selectFilter("Availability");
+    await CatalogPage.selectFilter(FilterBy.Availability);
     await CatalogPage.selectFilterOption(status);
     await browser.takeScreenshot();
     await CatalogPage.clickOkButton();
