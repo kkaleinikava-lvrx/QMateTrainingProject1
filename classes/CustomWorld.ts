@@ -1,13 +1,16 @@
 import { World } from '@cucumber/cucumber';
+import { Product } from "./interfaces.ts";
 
-export default class extends World {
+export default class CustomWorld<ParametersType = any> extends World<ParametersType> {
 
-    constructor(options) {
+    private itemsAddedToCart: Array<Product>;
+
+    constructor(options: World<ParametersType>) {
         super(options);
         this.itemsAddedToCart = [];
     }
 
-    addProductToDataStorage(product) {
+    addProductToDataStorage(product: Product): void {
         const existingItem = this.itemsAddedToCart.find(item => {
             return item.name === product.name && item.price === product.price;
         });
@@ -19,7 +22,7 @@ export default class extends World {
         }    
     }
 
-    getProductsFromDataStorage() {
+    getProductsFromDataStorage(): Array<Product> {
         return this.itemsAddedToCart;
     }
 }

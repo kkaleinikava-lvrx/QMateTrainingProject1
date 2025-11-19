@@ -15,9 +15,7 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js",
-    "wdioc": "wdio run ./wdioc.conf.js",
-    "wdiotsv": "wdio run wdiotsv.conf.ts"
+    "wdio": "wdio run ./wdio.conf.ts"
   },
   "dependencies": {
     "@types/wdio-qmate-service": "file:../wdio-qmate-types"

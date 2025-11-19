@@ -1,5 +1,5 @@
 import { BasePage } from './basePage.ts';
-import { Product } from "../../classes/types.ts"
+import { Product } from "../classes/interfaces.ts"
 
 class ShoppingCartPage extends BasePage {
      
