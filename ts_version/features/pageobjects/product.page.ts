@@ -1,6 +1,6 @@
-import { Page } from './page.ts';
+import { BasePage } from './basePage.ts';
 
-class ProductPage extends Page {
+class ProductPage extends BasePage {
      
     static readonly ADD_TO_CART_BUTTON_SELECTOR = {
         "elementProperties": {

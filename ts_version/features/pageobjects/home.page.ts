@@ -1,7 +1,7 @@
 import { browser } from '@wdio/globals';
-import { Page } from './page.ts';
+import { BasePage } from './basePage.ts';
 
-class HomePage extends Page {
+class HomePage extends BasePage {
 
     static readonly PAGE_TITLE_SELECTOR = {
         "elementProperties": {

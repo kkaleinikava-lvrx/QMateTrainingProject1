@@ -1,4 +1,4 @@
-export abstract class Page {
+export abstract class BasePage {
 
     abstract waitForPageLoaded(): Promise<void>
     

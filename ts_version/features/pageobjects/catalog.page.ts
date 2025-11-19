@@ -1,6 +1,6 @@
-import { Page } from './page.ts';
+import { BasePage } from './basePage.ts';
 
-class CatalogPage extends Page {
+class CatalogPage extends BasePage {
 
     static readonly BACK_BUTTON_SELECTOR = {
         "elementProperties": {

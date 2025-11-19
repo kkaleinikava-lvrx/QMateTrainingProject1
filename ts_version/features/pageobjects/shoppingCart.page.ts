@@ -1,7 +1,7 @@
-import { Page } from './page.ts';
+import { BasePage } from './basePage.ts';
 import { Product } from "../../classes/types.ts"
 
-class ShoppingCartPage extends Page {
+class ShoppingCartPage extends BasePage {
      
     static readonly CART_ENRTY_SELECTOR = {
         "elementProperties": {
