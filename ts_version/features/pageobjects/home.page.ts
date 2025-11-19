@@ -3,7 +3,7 @@ import { Page } from './page.ts';
 
 class HomePage extends Page {
 
-    static PAGE_TITLE_SELECTOR = {
+    static readonly PAGE_TITLE_SELECTOR = {
         "elementProperties": {
              "viewName": "sap.ui.demo.cart.view.Welcome",
             "metadata": "sap.m.Title",

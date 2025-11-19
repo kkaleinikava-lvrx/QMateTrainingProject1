@@ -2,7 +2,7 @@ import { Page } from './page.ts';
 
 class ShoppingCartPage extends Page {
      
-    static CART_ENRTY_SELECTOR = {
+    static readonly CART_ENRTY_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
             "metadata": "sap.m.ObjectListItem",
@@ -10,7 +10,7 @@ class ShoppingCartPage extends Page {
         }
     }
     
-    static PAGE_TITLE_SELECTOR = {
+    static readonly PAGE_TITLE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
             "metadata": "sap.m.Title",
@@ -18,7 +18,7 @@ class ShoppingCartPage extends Page {
         }
     }
 
-    static PROCEED_BUTTON_SELECTOR = {
+    static readonly PROCEED_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
             "metadata": "sap.m.Button",

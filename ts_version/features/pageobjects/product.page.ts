@@ -2,7 +2,7 @@ import { Page } from './page.ts';
 
 class ProductPage extends Page {
      
-    static ADD_TO_CART_BUTTON_SELECTOR = {
+    static readonly ADD_TO_CART_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Button",
@@ -14,7 +14,7 @@ class ProductPage extends Page {
         }
     }
     
-    static PRODUCT_IMAGE_SELECTOR = {
+    static readonly PRODUCT_IMAGE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Image",
@@ -22,7 +22,7 @@ class ProductPage extends Page {
         }
     }
 
-    static PRODUCT_NAME_SELECTOR = {
+    static readonly PRODUCT_NAME_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Text",
@@ -30,21 +30,21 @@ class ProductPage extends Page {
         }
     }
 
-    static PRODUCT_PRICE_SELECTOR = {
+    static readonly PRODUCT_PRICE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.ObjectNumber"
         }
     }
 
-    static PRODUCT_STATUS_SELECTOR = {
+    static readonly PRODUCT_STATUS_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.ObjectStatus"
         }
     }
 
-    static SHOW_SHOPPING_CART_BUTTON_SELECTOR = {
+    static readonly SHOW_SHOPPING_CART_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.ToggleButton",

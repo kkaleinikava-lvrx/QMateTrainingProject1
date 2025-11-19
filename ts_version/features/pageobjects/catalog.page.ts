@@ -2,7 +2,7 @@ import { Page } from './page.ts';
 
 class CatalogPage extends Page {
 
-    static BACK_BUTTON_SELECTOR = {
+    static readonly BACK_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Button",
@@ -10,7 +10,7 @@ class CatalogPage extends Page {
         }
     }
 
-    static CATEGORY_LIST_SELECTOR = {
+    static readonly CATEGORY_LIST_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Home",
             "metadata": "sap.m.List",
@@ -18,7 +18,7 @@ class CatalogPage extends Page {
         }
     }
 
-    static CATEGORY_TITLE_SELECTOR = {
+    static readonly CATEGORY_TITLE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Title",
@@ -26,7 +26,7 @@ class CatalogPage extends Page {
         }
     }
 
-    static FILTER_BUTTON_SELECTOR = {
+    static readonly FILTER_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Button",
@@ -34,7 +34,7 @@ class CatalogPage extends Page {
         }
     }
 
-    static OK_BUTTON_SELECTOR = {
+    static readonly OK_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
                 "metadata": "sap.m.Button",
@@ -42,21 +42,21 @@ class CatalogPage extends Page {
         }
     }
 
-    static PRODUCT_ITEM_SELECTOR = {
+    static readonly PRODUCT_ITEM_SELECTOR = {
         "elementProperties": {
             "metadata": "sap.m.ObjectListItem",
             "id": "*productList*"
         }
     }
 
-    static PRODUCT_LIST_SELECTOR = {
+    static readonly PRODUCT_LIST_SELECTOR = {
         "elementProperties": {
             "metadata": "sap.m.List",
             "id": "*productList"
         }
     }
 
-    static SEARCH_FIELD_SELECTOR = {
+    static readonly SEARCH_FIELD_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Home",
             "metadata": "sap.m.SearchField",
