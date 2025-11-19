@@ -1,6 +1,8 @@
-class CatalogPage {
+import { BasePage } from './basePage.ts';
 
-    static BACK_BUTTON_SELECTOR = {
+class CatalogPage extends BasePage {
+
+    static readonly BACK_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Button",
@@ -8,7 +10,7 @@ class CatalogPage {
         }
     }
 
-    static CATEGORY_LIST_SELECTOR = {
+    static readonly CATEGORY_LIST_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Home",
             "metadata": "sap.m.List",
@@ -16,7 +18,7 @@ class CatalogPage {
         }
     }
 
-    static CATEGORY_TITLE_SELECTOR = {
+    static readonly CATEGORY_TITLE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Title",
@@ -24,7 +26,7 @@ class CatalogPage {
         }
     }
 
-    static FILTER_BUTTON_SELECTOR = {
+    static readonly FILTER_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
             "metadata": "sap.m.Button",
@@ -32,7 +34,7 @@ class CatalogPage {
         }
     }
 
-    static OK_BUTTON_SELECTOR = {
+    static readonly OK_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Category",
                 "metadata": "sap.m.Button",
@@ -40,21 +42,21 @@ class CatalogPage {
         }
     }
 
-    static PRODUCT_ITEM_SELECTOR = {
+    static readonly PRODUCT_ITEM_SELECTOR = {
         "elementProperties": {
             "metadata": "sap.m.ObjectListItem",
             "id": "*productList*"
         }
     }
 
-    static PRODUCT_LIST_SELECTOR = {
+    static readonly PRODUCT_LIST_SELECTOR = {
         "elementProperties": {
             "metadata": "sap.m.List",
             "id": "*productList"
         }
     }
 
-    static SEARCH_FIELD_SELECTOR = {
+    static readonly SEARCH_FIELD_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Home",
             "metadata": "sap.m.SearchField",
@@ -62,28 +64,28 @@ class CatalogPage {
         }
     }
 
-    async clickBackButton() {
+    async clickBackButton(): Promise<void> {
         await ui5.userInteraction.click(CatalogPage.BACK_BUTTON_SELECTOR);
     }
 
-    async clickFilterButton() {
+    async clickFilterButton(): Promise<void> {
         await ui5.userInteraction.click(CatalogPage.FILTER_BUTTON_SELECTOR);
     }
 
-    async clickOkButton() {
+    async clickOkButton(): Promise<void> {
         await ui5.userInteraction.click(CatalogPage.OK_BUTTON_SELECTOR);
     }
 
-    async getSelectedCategoryTitle() {
+    async getSelectedCategoryTitle(): Promise<string> {
         const categoryTitle = await ui5.element.getPropertyValue(CatalogPage.CATEGORY_TITLE_SELECTOR,"text");
         return categoryTitle;
     }
     
-    async searchForProduct(searchText) {
+    async searchForProduct(searchText: string): Promise<void> {
         await ui5.userInteraction.searchFor(CatalogPage.SEARCH_FIELD_SELECTOR, searchText);
     }
 
-    async selectCategory(categoryName) {
+    async selectCategory(categoryName: string): Promise<void> {
         const categorySelector = {
              "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Home",
@@ -94,7 +96,7 @@ class CatalogPage {
         await ui5.userInteraction.click(categorySelector);
     }
 
-    async selectFilter(filterName) {
+    async selectFilter(filterName: string): Promise<void> {
         const filterItemSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Category",
@@ -104,7 +106,7 @@ class CatalogPage {
         }
         await ui5.userInteraction.click(filterItemSelector);
     }
-    async selectFilterOption(filterOptionName) {
+    async selectFilterOption(filterOptionName: string): Promise<void> {
         const filterOptionSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Category",
@@ -115,11 +117,11 @@ class CatalogPage {
         await ui5.userInteraction.click(filterOptionSelector);
     }
 
-    async selectItemByIndex (index) {
+    async selectItemByIndex (index: number): Promise<void> {
         await ui5.userInteraction.click(CatalogPage.PRODUCT_ITEM_SELECTOR, index);
     }
 
-    async selectItemByIndexAndStatus (index, status) {
+    async selectItemByIndexAndStatus (index: number, status: string): Promise<void> {
         const itemSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Category",
@@ -134,7 +136,7 @@ class CatalogPage {
         await ui5.userInteraction.click(itemSelector, index);
     }
 
-    async selectItemByProduct (productName) {
+    async selectItemByProduct (productName: string): Promise<void> {
         const productItemSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Category",
@@ -145,15 +147,15 @@ class CatalogPage {
         await ui5.userInteraction.click(productItemSelector);
     }
         
-    async waitForCategoryDisplayed () {
+    async waitForCategoryDisplayed (): Promise<void> {
         await ui5.element.getDisplayed(CatalogPage.CATEGORY_TITLE_SELECTOR);
     }
 
-    async waitForPageLoaded () {
+    async waitForPageLoaded (): Promise<void> {
         await ui5.element.waitForAll(CatalogPage.CATEGORY_LIST_SELECTOR);        
     }
 
-    async waitForProductListDisplayed () {
+    async waitForProductListDisplayed (): Promise<void> {
         await ui5.element.getDisplayed(CatalogPage.PRODUCT_LIST_SELECTOR);
     }
     

@@ -1,6 +1,8 @@
-class ProductPage {
+import { BasePage } from './basePage.ts';
+
+class ProductPage extends BasePage {
      
-    static ADD_TO_CART_BUTTON_SELECTOR = {
+    static readonly ADD_TO_CART_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Button",
@@ -11,20 +13,8 @@ class ProductPage {
             ]
         }
     }
-
-    static LOGIN_BUTTON_SELECTOR = {
-        "elementProperties": {
-            "viewName": "sap.ui.demo.cart.view.Product",
-            "metadata": "sap.m.Button",
-            "tooltip": [
-                {
-                    "path": "i18n>avatarButtonTooltip"
-                }
-            ]
-        }
-    }
     
-    static PRODUCT_IMAGE_SELECTOR = {
+    static readonly PRODUCT_IMAGE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Image",
@@ -32,7 +22,7 @@ class ProductPage {
         }
     }
 
-    static PRODUCT_NAME_SELECTOR = {
+    static readonly PRODUCT_NAME_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.Text",
@@ -40,21 +30,21 @@ class ProductPage {
         }
     }
 
-    static PRODUCT_PRICE_SELECTOR = {
+    static readonly PRODUCT_PRICE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.ObjectNumber"
         }
     }
 
-    static PRODUCT_STATUS_SELECTOR = {
+    static readonly PRODUCT_STATUS_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.ObjectStatus"
         }
     }
 
-    static SHOW_SHOPPING_CART_BUTTON_SELECTOR = {
+    static readonly SHOW_SHOPPING_CART_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Product",
             "metadata": "sap.m.ToggleButton",
@@ -69,38 +59,34 @@ class ProductPage {
         }
     }
 
-    async addProductToCart() {
+    async addProductToCart(): Promise<void> {
         await this.clickAddToCartButton();
         if (await this.getProductStatus() === "Out of Stock") {
             await ui5.confirmationDialog.clickOk();
         }
     }
 
-    async clickAddToCartButton() {
+    async clickAddToCartButton(): Promise<void> {
         await ui5.userInteraction.click(ProductPage.ADD_TO_CART_BUTTON_SELECTOR);
     }
 
-    async getProductName() {
+    async getProductName(): Promise<string> {
         return await ui5.element.getPropertyValue(ProductPage.PRODUCT_NAME_SELECTOR, "text");
     }
 
-    async getProductPrice() {
+    async getProductPrice(): Promise<string> {
         return await ui5.element.getPropertyValue(ProductPage.PRODUCT_PRICE_SELECTOR, "number");
     }
 
-    async getProductStatus() {
+    async getProductStatus(): Promise<string> {
         return await ui5.element.getPropertyValue(ProductPage.PRODUCT_STATUS_SELECTOR, "text");
     }
-
-    async login() {
-        await ui5.userInteraction.click(ProductPage.LOGIN_BUTTON_SELECTOR);
-    }
     
-    async showShoppingCart() {
+    async showShoppingCart(): Promise<void> {
         await ui5.userInteraction.click(ProductPage.SHOW_SHOPPING_CART_BUTTON_SELECTOR);
     }
 
-    async waitForPageLoaded () {
+    async waitForPageLoaded(): Promise<void> {
         await ui5.element.getDisplayed(ProductPage.PRODUCT_IMAGE_SELECTOR);        
     }
 

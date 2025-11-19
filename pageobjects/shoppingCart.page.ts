@@ -1,6 +1,9 @@
-class ShoppingCartPage {
+import { BasePage } from './basePage.ts';
+import { Product } from "../classes/interfaces.ts"
+
+class ShoppingCartPage extends BasePage {
      
-    static CART_ENRTY_SELECTOR = {
+    static readonly CART_ENRTY_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
             "metadata": "sap.m.ObjectListItem",
@@ -8,7 +11,7 @@ class ShoppingCartPage {
         }
     }
     
-    static PAGE_TITLE_SELECTOR = {
+    static readonly PAGE_TITLE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
             "metadata": "sap.m.Title",
@@ -16,7 +19,7 @@ class ShoppingCartPage {
         }
     }
 
-    static PROCEED_BUTTON_SELECTOR = {
+    static readonly PROCEED_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Cart",
             "metadata": "sap.m.Button",
@@ -24,11 +27,11 @@ class ShoppingCartPage {
         }
     }
 
-    async clickProceedButton() {
+    async clickProceedButton(): Promise<void> {
         await ui5.userInteraction.click(ShoppingCartPage.PROCEED_BUTTON_SELECTOR);  
     }
 
-    async getItemListInShoppongCart() {
+    async getItemListInShoppongCart(): Promise<Array<Product>> {
         const itemsInCartArray = [];
         for (let i = 0; i < await this.getQuantityOfItemsInShoppingCart(); i++) {
             itemsInCartArray.push({ 
@@ -40,7 +43,7 @@ class ShoppingCartPage {
         return itemsInCartArray;
     }
 
-    async getQuantityForProductFromShoppingCart(productName) {
+    async getQuantityForProductFromShoppingCart(productName: string): Promise<number> {
         const productSelector = {
             "elementProperties": {
                 "viewName": "sap.ui.demo.cart.view.Cart",
@@ -49,16 +52,15 @@ class ShoppingCartPage {
                 "bindingContextPath": "/cartEntries/*"
             }
         }
-        const quantityString = await ui5.control.getProperty(productSelector, "intro");
-        return parseInt(quantityString);
+        return parseInt(await ui5.control.getProperty(productSelector, "intro"));
     }
 
-    async getQuantityOfItemsInShoppingCart() {      
+    async getQuantityOfItemsInShoppingCart(): Promise<number> {      
         const cartItemsArray = await ui5.element.getAllDisplayed(ShoppingCartPage.CART_ENRTY_SELECTOR);
         return cartItemsArray.length;
     }
     
-    async waitForPageLoaded () {
+    async waitForPageLoaded(): Promise<void> {
         await ui5.element.waitForAll(ShoppingCartPage.PAGE_TITLE_SELECTOR);        
     }
     

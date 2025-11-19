@@ -1,28 +1,30 @@
 import { Given, When, Then, setWorldConstructor } from '@wdio/cucumber-framework';
-import CatalogPage from '../../pages/catalog.page.js';
-import HomePage from '../../pages/home.page.js';
-import ProductPage from '../../pages/product.page.js';
-import ShoppingCartPage from '../../pages/shoppingCart.page.js';
+import CatalogPage from '../../pageobjects/catalog.page.ts';
+import HomePage from '../../pageobjects/home.page.ts';
+import ProductPage from '../../pageobjects/product.page.ts';
+import ShoppingCartPage from '../../pageobjects/shoppingCart.page.ts';
 
-import CustomWorld from "../../classes/CustomWorld.js";
+import CustomWorld from "../../classes/CustomWorld.ts";
+import { Product } from "../../classes/interfaces.ts";
+import { Filter } from "../../classes/enums.ts"
 
 setWorldConstructor(CustomWorld);
 
-Given ('Home page is open', async function() {
+Given ('Home page is open', async function(): Promise<void> {
     await HomePage.open();
     await HomePage.waitForPageLoaded();
     await browser.takeScreenshot();
 });
 
-When ('Select category {string}', async function(categoryName) {
+When ('Select category {string}', async function(categoryName: string): Promise<void> {
     await CatalogPage.selectCategory(categoryName);
     await CatalogPage.waitForCategoryDisplayed();
     await browser.takeScreenshot();
 });
 
-When ('Filter by availabilty status {string}', async function(status) {
+When ('Filter by availabilty status {string}', async function(status: string): Promise<void> {
     await CatalogPage.clickFilterButton();
-    await CatalogPage.selectFilter("Availability");
+    await CatalogPage.selectFilter(Filter.Availability);
     await CatalogPage.selectFilterOption(status);
     await browser.takeScreenshot();
     await CatalogPage.clickOkButton();
@@ -30,7 +32,8 @@ When ('Filter by availabilty status {string}', async function(status) {
     await browser.takeScreenshot();
 });
 
-When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async function(itemQuantity) {
+When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, 
+  async function(itemQuantity: number): Promise<void> {
     await CatalogPage.selectItemByIndex(0);
     await ProductPage.waitForPageLoaded();
     
@@ -46,28 +49,28 @@ When ('Add top item from catalog to cart {int} time(s)', {timeout: 90000}, async
     });
 });
 
-When ('Go back to home page', async function() {
+When ('Go back to home page', async function(): Promise<void> {
     await CatalogPage.clickBackButton();
     await HomePage.waitForPageLoaded();
     await browser.takeScreenshot();
 });
 
-When ('Search for product {string}', async function(productName) {
+When ('Search for product {string}', async function(productName: string): Promise<void> {
     await CatalogPage.searchForProduct(productName);
     await CatalogPage.waitForProductListDisplayed();
     await browser.takeScreenshot();
 });
 
-When ('Open cart', async function() {
+When ('Open cart', async function(): Promise<void> {
     await ProductPage.showShoppingCart();
     await ShoppingCartPage.waitForPageLoaded();
     await browser.takeScreenshot();
 });
 
-Then ('Verify products in cart', async function() {
-    const expectedItems = this.getProductsFromDataStorage();
-    const actualItems = await ShoppingCartPage.getItemListInShoppongCart();
-    expectedItems.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
-    actualItems.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+Then ('Verify products in cart', async function(): Promise<void> {
+    const expectedItems: Array<Product> = this.getProductsFromDataStorage();
+    const actualItems: Array<Product> = await ShoppingCartPage.getItemListInShoppongCart();
+    expectedItems.sort((a: object, b: object) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    actualItems.sort((a: object, b: object) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
     common.assertion.expectEqual(expectedItems, actualItems);
 });

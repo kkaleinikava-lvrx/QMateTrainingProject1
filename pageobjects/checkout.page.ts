@@ -1,6 +1,8 @@
-class CheckoutPage {
+import { BasePage } from './basePage.ts';
 
-    static CARDHOLDER_NAME_INPUT_SELECTOR = {
+class CheckoutPage extends BasePage {
+
+    static readonly CARDHOLDER_NAME_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Input",
@@ -8,7 +10,7 @@ class CheckoutPage {
         }
     }
 
-    static CARD_EXPIRATION_DATE_INPUT_SELECTOR = {
+    static readonly CARD_EXPIRATION_DATE_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.DatePicker",
@@ -16,7 +18,7 @@ class CheckoutPage {
         }
     }
 
-    static CARD_NUMBER_INPUT_SELECTOR = {
+    static readonly CARD_NUMBER_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.MaskInput",
@@ -25,7 +27,7 @@ class CheckoutPage {
         }
     }
 
-    static CARD_SECURITY_CODE_INPUT_SELECTOR = {
+    static readonly CARD_SECURITY_CODE_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.MaskInput",
@@ -33,7 +35,7 @@ class CheckoutPage {
         }
     }
     
-    static CREDIT_CARD_BUTTON_SELECTOR = {
+    static readonly CREDIT_CARD_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -41,7 +43,7 @@ class CheckoutPage {
         }
     }
     
-    static DELIVERY_TYPE_TEXT_SELECTOR = {
+    static readonly DELIVERY_TYPE_TEXT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Text",
@@ -49,7 +51,7 @@ class CheckoutPage {
         }
     }
 
-    static EXPRESS_DELIVERY_BUTTON_SELECTOR = {
+    static readonly EXPRESS_DELIVERY_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -57,7 +59,7 @@ class CheckoutPage {
         }
     }
 
-    static INVOICE_ADDRESS_CITY_INPUT_SELECTOR = {
+    static readonly INVOICE_ADDRESS_CITY_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Input",
@@ -65,7 +67,7 @@ class CheckoutPage {
         }
     }
 
-    static INVOICE_ADDRESS_COUNTRY_INPUT_SELECTOR = {
+    static readonly INVOICE_ADDRESS_COUNTRY_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Input",
@@ -73,7 +75,7 @@ class CheckoutPage {
         }
     }
 
-    static INVOICE_ADDRESS_STREET_INPUT_SELECTOR = {
+    static readonly INVOICE_ADDRESS_STREET_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Input",
@@ -81,7 +83,7 @@ class CheckoutPage {
         }
     }
 
-    static INVOICE_ADDRESS_ZIP_CODE_INPUT_SELECTOR = {
+    static readonly INVOICE_ADDRESS_ZIP_CODE_INPUT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Input",
@@ -89,21 +91,21 @@ class CheckoutPage {
         }
     }
     
-    static NOTES_TEXT_AREA_SELECTOR = {
+    static readonly NOTES_TEXT_AREA_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.TextArea"
         }
     }
 
-    static ORDER_COMPLETED_TEXT_SELECTOR = {
+    static readonly ORDER_COMPLETED_TEXT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.OrderCompleted",
             "metadata": "sap.m.FormattedText"
         }
     }
 
-    static ORDER_SUMMARY_BUTTON_SELECTOR = {
+    static readonly ORDER_SUMMARY_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -111,7 +113,7 @@ class CheckoutPage {
         }
     }
 
-    static PAGE_TITLE_SELECTOR = {
+    static readonly PAGE_TITLE_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Title",
@@ -119,7 +121,7 @@ class CheckoutPage {
         }
     }
 
-    static RETURN_TO_SHOP_BUTTON_SELECTOR = {
+    static readonly RETURN_TO_SHOP_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.OrderCompleted",
             "metadata": "sap.m.Button",
@@ -127,14 +129,14 @@ class CheckoutPage {
         }
     }
 
-    static STEP2_BUTTON_SELECTOR = {
+    static readonly STEP2_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
             "id": "*contentsStep-nextButton"    
         }
     }
-    static STEP3_BUTTON_SELECTOR = {
+    static readonly STEP3_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -142,7 +144,7 @@ class CheckoutPage {
         }
     }
 
-    static STEP4_BUTTON_SELECTOR = {
+    static readonly STEP4_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -150,7 +152,7 @@ class CheckoutPage {
         }
     }
 
-    static STEP5_BUTTON_SELECTOR = {
+    static readonly STEP5_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -158,7 +160,7 @@ class CheckoutPage {
         }
     }
 
-    static SUBMIT_BUTTON_SELECTOR = {
+    static readonly SUBMIT_BUTTON_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Button",
@@ -166,7 +168,7 @@ class CheckoutPage {
         }
     }
 
-    static TOTAL_TEXT_SELECTOR = {
+    static readonly TOTAL_TEXT_SELECTOR = {
         "elementProperties": {
             "viewName": "sap.ui.demo.cart.view.Checkout",
             "metadata": "sap.m.Text",
@@ -174,98 +176,95 @@ class CheckoutPage {
         }
     }
     
-    async clickCreditCardButton() {
+    async clickCreditCardButton(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.CREDIT_CARD_BUTTON_SELECTOR);
     }
     
-    async clickExpressDeliveryButton() {
+    async clickExpressDeliveryButton(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.EXPRESS_DELIVERY_BUTTON_SELECTOR);
     }
 
-    async clickOrderSummaryButton() {
+    async clickOrderSummaryButton(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.ORDER_SUMMARY_BUTTON_SELECTOR);
     }
 
-    async clickRetrunToShopButton() {
+    async clickRetrunToShopButton(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.RETURN_TO_SHOP_BUTTON_SELECTOR);
     }
 
-    async clickStep2Button() {
+    async clickStep2Button(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.STEP2_BUTTON_SELECTOR);
     }
 
-    async clickStep3Button() {
+    async clickStep3Button(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.STEP3_BUTTON_SELECTOR);
     }
 
-    async clickStep4Button() {
+    async clickStep4Button(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.STEP4_BUTTON_SELECTOR);
     }
 
-    async clickStep5Button() {
+    async clickStep5Button(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.STEP5_BUTTON_SELECTOR);
     }
 
-    async clickSubmitButton() {
+    async clickSubmitButton(): Promise<void> {
         await ui5.userInteraction.click(CheckoutPage.SUBMIT_BUTTON_SELECTOR);
     }
 
-    async confirmOrderSubmission() {
+    async confirmOrderSubmission(): Promise<void> {
         await ui5.confirmationDialog.clickYes();
     }
 
-    async getDeliveryType() {
-        const deliveryType = await ui5.element.getPropertyValue(CheckoutPage.DELIVERY_TYPE_TEXT_SELECTOR, "text");
-        return deliveryType;
+    async getDeliveryType(): Promise<string> {
+        return await ui5.element.getPropertyValue(CheckoutPage.DELIVERY_TYPE_TEXT_SELECTOR, "text");
     }
 
-    async getOrderCompletedText() {
-        const textValue = await ui5.element.getPropertyValue(CheckoutPage.ORDER_COMPLETED_TEXT_SELECTOR, "htmlText");
-        return textValue;
+    async getOrderCompletedText(): Promise<string> {
+        return await ui5.element.getPropertyValue(CheckoutPage.ORDER_COMPLETED_TEXT_SELECTOR, "htmlText");
     }
 
-    async getTotalAmountText() {
-        const totalAmountText = await ui5.element.getPropertyValue(CheckoutPage.TOTAL_TEXT_SELECTOR, "text");
-        return totalAmountText;
+    async getTotalAmountText(): Promise<string> {
+        return await ui5.element.getPropertyValue(CheckoutPage.TOTAL_TEXT_SELECTOR, "text");
     }
 
-    async inputCardholderName(name) {
+    async inputCardholderName(name: string): Promise<void> {
         await ui5.userInteraction.fill(CheckoutPage.CARDHOLDER_NAME_INPUT_SELECTOR, name);
     }
 
-    async inputCardNumber(number) {
+    async inputCardNumber(number: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.CARD_NUMBER_INPUT_SELECTOR, number);
     }
 
-    async inputCreditCardExpirationDate(date) {
+    async inputCreditCardExpirationDate(date: string): Promise<void> {
         await ui5.userInteraction.fill(CheckoutPage.CARD_EXPIRATION_DATE_INPUT_SELECTOR, date);
     }
 
-    async inputCreditCardSecurityCode(code) {
+    async inputCreditCardSecurityCode(code: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.CARD_SECURITY_CODE_INPUT_SELECTOR, code);  
     }
     
-    async inputInvoiceAddressCity(city) {
+    async inputInvoiceAddressCity(city: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.INVOICE_ADDRESS_CITY_INPUT_SELECTOR, city);
     }
     
-    async inputInvoiceAddressCountry(country) {
+    async inputInvoiceAddressCountry(country: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.INVOICE_ADDRESS_COUNTRY_INPUT_SELECTOR, country);
     }
 
-    async inputInvoiceAddressStreet(streetAddress) {
+    async inputInvoiceAddressStreet(streetAddress: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.INVOICE_ADDRESS_STREET_INPUT_SELECTOR, streetAddress);
     }
 
-    async inputInvoiceAddressZipCode(zipCode) {
+    async inputInvoiceAddressZipCode(zipCode: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.INVOICE_ADDRESS_ZIP_CODE_INPUT_SELECTOR, zipCode);
     }
 
-    async inputNotes(notes) {
+    async inputNotes(notes: string): Promise<void> {
         await ui5.userInteraction.clearAndFill(CheckoutPage.NOTES_TEXT_AREA_SELECTOR, notes);
     }
     
-    async waitForPageLoaded () {
+    async waitForPageLoaded(): Promise<void> {
         await ui5.element.waitForAll(CheckoutPage.PAGE_TITLE_SELECTOR);
     }
     

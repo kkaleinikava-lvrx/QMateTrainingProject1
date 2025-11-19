@@ -1,7 +1,9 @@
-    
-class HomePage {
+import { browser } from '@wdio/globals';
+import { BasePage } from './basePage.ts';
 
-    static PAGE_TITLE_SELECTOR = {
+class HomePage extends BasePage {
+
+    static readonly PAGE_TITLE_SELECTOR = {
         "elementProperties": {
              "viewName": "sap.ui.demo.cart.view.Welcome",
             "metadata": "sap.m.Title",
@@ -13,11 +15,11 @@ class HomePage {
         }
     }
   
-    async open () {
+    async open(): Promise<void> {
         await browser.url('/test-resources/sap/m/demokit/cart/webapp/index.html');
     } 
 
-    async waitForPageLoaded () {
+    async waitForPageLoaded(): Promise<void> {
         await ui5.element.waitForAll(HomePage.PAGE_TITLE_SELECTOR);        
     }
     
