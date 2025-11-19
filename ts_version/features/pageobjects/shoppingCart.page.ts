@@ -1,4 +1,5 @@
 import { Page } from './page.ts';
+import { Product } from "../../classes/types.ts"
 
 class ShoppingCartPage extends Page {
      
@@ -30,7 +31,7 @@ class ShoppingCartPage extends Page {
         await ui5.userInteraction.click(ShoppingCartPage.PROCEED_BUTTON_SELECTOR);  
     }
 
-    async getItemListInShoppongCart(): Promise<Array<object>> {
+    async getItemListInShoppongCart(): Promise<Array<Product>> {
         const itemsInCartArray = [];
         for (let i = 0; i < await this.getQuantityOfItemsInShoppingCart(); i++) {
             itemsInCartArray.push({ 

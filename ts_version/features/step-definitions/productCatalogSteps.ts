@@ -68,7 +68,7 @@ When ('Open cart', async function(): Promise<void> {
 
 Then ('Verify products in cart', async function(): Promise<void> {
     const expectedItems: Array<Product> = this.getProductsFromDataStorage();
-    const actualItems: Array<Product> = await ShoppingCartPage.getItemListInShoppongCart() as Array<Product>;
+    const actualItems: Array<Product> = await ShoppingCartPage.getItemListInShoppongCart();
     expectedItems.sort((a: object, b: object) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
     actualItems.sort((a: object, b: object) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
     common.assertion.expectEqual(expectedItems, actualItems);
